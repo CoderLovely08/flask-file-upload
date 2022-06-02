@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request
 from flask import *  
 import pandas as pd
@@ -14,7 +15,7 @@ def test():
         myfile = request.files['fileInput']
         if '.xlsx' in myfile.filename:
             print("Excel file working")
-            myfile.save(myfile.filename)
+            myfile.save(os.path.join('Files',myfile.filename))
             myfun(myfile)
         else: return render_template("Failure.html") 
     return render_template("success.html", name = myfile.filename) 
